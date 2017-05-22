@@ -105,6 +105,8 @@ public class SwitchYardConsumer extends DefaultConsumer implements ServiceHandle
                 if (camelExchange.hasOut() && camelExchange.getOut().isFault()) {
                     // Use Out body as a fault content if camelExchange.getException() returns null
                     camelFault = camelExchange.getOut().getBody();
+                } else if (camelExchange.getIn().isFault()) {
+                    camelFault = camelExchange.getIn().getBody();
                 }
             }
 
